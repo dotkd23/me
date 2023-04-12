@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+{% block content %}
+<title>Featured Items</title>
+<body>
+
+<header class="header">
+    <div class="container">
+        <h1>Featured Items</h1>
+    </div>
+</header>
+
+<section class="content">
+    <div class="container">
+        <div class="featured-items-container">
+            {% if featured_items %}
+                {% for featured_item in featured_items %}
+                    <div class="featured-item">
+                        <img src="{{ featured_item.image.url }}" alt="{{ featured_item.title }}">
+                        <h3>{{ featured_item.title }}</h3>
+                        <p>{{ featured_item.description }}</p>
+                        <a href="{{ featured_item.link }}" target="_blank">Learn More</a>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>{{ message }}</p>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="container">
+        <p>Footer Text</p>
+    </div>
+</footer>
+
+</body>
+
+</html>
+{% endblock content %}

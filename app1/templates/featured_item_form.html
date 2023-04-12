@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+<!DOCTYPE html>
+{% block content %}
+<head>
+  <title>Create Featured Item</title>
+  <!-- Add custom CSS for elegant style -->
+  <style>
+    /* Add custom font styles */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f8f8;
+    }
+    /* Add custom margin and padding to form container */
+    .form-container {
+      margin: 2rem auto;
+      max-width: 500px;
+      padding: 1rem;
+      background-color: #fff;
+      box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+      border-radius: 5px;
+    }
+    /* Add custom margin and font color to form labels */
+    label {
+      margin-bottom: 0.5rem;
+      color: #666;
+      font-weight: bold;
+    }
+    /* Add custom margin and font color to form input fields */
+    input, textarea {
+      margin-bottom: 1rem;
+      color: #444;
+      border: none;
+      border-bottom: 1px solid #ddd;
+      outline: none;
+      width: 100%;
+    }
+    /* Add custom padding and font color to form buttons */
+    button {
+      padding: 0.5rem 1rem;
+      color: #fff;
+      background-color: #007bff;
+      border: none;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+      cursor: pointer;
+    }
+    /* Add custom styles to form buttons on hover */
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+<div class="form-container">
+  <h2 style="text-align: center;">Create Featured Item</h2>
+  <form>
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input type="text" id="title" name="title" required>
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea id="description" name="description" rows="3" required></textarea>
+    </div>
+    <div class="form-group">
+      <label for="image">Image URL</label>
+      <input type="text" id="image" name="image" required>
+    </div>
+    <div class="form-group">
+      <label for="link">Link URL</label>
+      <input type="text" id="link" name="link" required>
+    </div>
+    <button type="submit" style="background-color: #007bff;">Submit</button>
+  </form>
+</div>
+
+</body>
+</html>
+{% endblock content %}

@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center mt-5">
+        <h1 class="display-3 text-primary">Carousel Items</h1>
+        <p class="lead">Welcome to our premium carousel items showcase</p>
+      </div>
+    </div>
+    <div class="row mt-5">
+      <div class="col-md-8 mx-auto">
+        <div class="d-flex justify-content-between align-items-center">
+          <a href="{% url 'app1:carousel_item_create' %}" class="btn btn-primary">Add New Carousel Item</a>
+          <form method="post" action="{% url 'app1:carousel_items_delete_all' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger" onclick="return confirmDeleteAll();">Delete All</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row mt-5">
+      <div class="col-md-12">
+        <table class="table table-hover">
+          <thead class="bg-primary text-white">
+            <tr>
+              <th>Image</th>
+              <th>Title</th>
+              <th>Content</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for carousel_item in carousel_items %}
+            <tr>
+              <td>
+                <a href="{% url 'app1:carousel_item_detail' carousel_item.id %}">
+                  <img src="{{ carousel_item.image.url }}" alt="{{ carousel_item.title }}" height="50" class="img-fluid rounded-circle">
+                </a>
+              </td>
+              <td class="align-middle">{{ carousel_item.title }}</td>
+              <td class="align-middle">{{ carousel_item.content }}</td>
+              <td class="align-middle">
+                <div class="btn-group">
+                  <a href="{% url 'app1:carousel_item_update' carousel_item.id %}" class="btn btn-sm btn-primary">Edit</a>
+                  <a href="{% url 'app1:carousel_item_delete' carousel_item.id %}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
+                  <form method="post" action="{% url 'app1:carousel_item_make_featured' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="carousel_item_id" value="{{ carousel_item.id }}"/>
+                    <button type="submit" class="btn btn-sm btn-warning">Make Featured</button>
+                  </form>
+                </div>
+              </td>
+            </tr>
+            {% empty %}
+              <tr>
+                <td colspan="4">No carousel items available.</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    function confirmDeleteAll() {
+      var itemsCount = {{ carousel_items|length }};
+      if (itemsCount > 0) {
+        return confirm('Are you sure you want to delete all carousel items?');
+      } else {
+        alert('There is nothing to delete!');
+        return false;
+      }
+    }
+  </script>
+{% endblock content %}

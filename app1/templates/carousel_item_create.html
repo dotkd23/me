@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="container mt-5">
+  <h1 class="text-center mb-4">Create Carousel Item</h1>
+  <div class="d-flex justify-content-center">
+    <div class="col-md-6 carousel-form">
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="{{ form.title.id_for_label }}" class="text-muted">Title</label>
+          {{ form.title }}
+        </div>
+        <div class="form-group">
+          <label for="{{ form.image.id_for_label }}" class="text-muted">Image</label>
+          {{ form.image }}
+        </div>
+        <div class="form-group">
+          <label for="{{ form.description.id_for_label }}" class="text-muted">Description</label>
+          {{ form.description }}
+        </div>
+        <div class="form-check mb-3">
+          {{ form.is_featured }}
+          <label class="form-check-label text-muted" for="{{ form.is_featured.id_for_label }}">Is Featured</label>
+        </div>
+        <div class="form-check mb-3">
+          {{ form.is_active }}
+          <label class="form-check-label text-muted" for="{{ form.is_active.id_for_label }}">Is Active</label>
+        </div>
+        <div class="text-center mt-4">
+          <input type="submit" value="Create" class="btn btn-primary btn-custom">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock content %}

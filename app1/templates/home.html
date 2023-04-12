@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Welcome to My Web Application</h1>
+    <h2>Featured Items</h2>
+    <div class="featured-items">
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                {% for item in carousel_items %}
+                    {% if item.featured %}
+                        <li data-target="#myCarousel" data-slide-to="{{ forloop.counter }}" {% if forloop.first %}class="active"{% endif %}></li>
+                    {% endif %}
+                {% endfor %}
+            </ol>
+            <div class="carousel-inner">
+                {% if carousel_items %}
+                    {% for item in carousel_items %}
+                        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                            <img src="{{ item.image.url }}" alt="{{ item.title }}" class="d-block w-100"/>
+                            <div class="carousel-caption">
+                                <h3>{{ item.title }}</h3>
+                                <p>{{ item.description }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="carousel-item active">
+                        <div class="carousel-caption">
+                            <p>There are no featured items at the moment.</p>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+            <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+    <h2>Testimonials</h2>
+    <div class="testimonials">
+        {% for testimonial in testimonials %}
+            <div class="testimonial">
+                <h3>{{ testimonial.name }}</h3>
+                <p>{{ testimonial.message }}</p>
+            </div>
+        {% empty %}
+            <p>There are no testimonials at the moment.</p>
+        {% endfor %}
+    </div>
+    <hr>
+    <!-- Add more sections as needed -->
+{% endblock content %}

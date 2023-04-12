@@ -1,0 +1,29 @@
+<!-- carousel_item_detail.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Carousel Item Detail</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Carousel Item Detail</h1>
+        <hr>
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="card">
+                    <img src="{{ carousel_item.image.url }}" alt="{{ carousel_item.title }}" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ carousel_item.title }}</h5>
+                        <p class="card-text">{{ carousel_item.description }}</p>
+                        <p class="card-text">Created by: {{ carousel_item.user.username }}</p>
+                        <p class="card-text">Created at: {{ carousel_item.created_at }}</p>
+                        <a href="{% url 'app1:carousel_items' %}">View Carousel Items</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
